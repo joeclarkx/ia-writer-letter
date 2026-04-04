@@ -22,10 +22,11 @@
     background: var(--background);
 }
 
+
 *,
 *::before,
 *::after {
-    font-family: "iA Writer Quattro", sans-serif;
+    font-family: "iA Writer Quattro", iAWriterQuattroS-Regular, sans-serif;
     line-height: var(--line-height);
     box-sizing: border-box;
     margin: 0;
