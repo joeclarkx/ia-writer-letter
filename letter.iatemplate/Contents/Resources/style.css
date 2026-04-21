@@ -95,7 +95,27 @@ a {
         margin: 0 3cm;
         font-size: 10pt;
         font-weight: 400;
+        position: relative;
+        overflow: visible;
     }
+
+    body::before {
+        content: '';
+        display: block;
+        position: absolute;
+        left: -2.7cm;
+        width: 0.4cm;
+        height: 0;
+        border-top: 1px solid #aaa;
+        margin: 0;
+        padding: 0;
+        box-sizing: content-box;
+    }
+
+    body::before {
+        top: 73mm;
+    }
+
 
     *,
     *:before,
