@@ -1,3 +1,34 @@
+/* iA Writer's fonts ship inside the app bundle, not as system fonts. They must
+   be loaded through the app's private ia-writer-font:// scheme. */
+
+@font-face {
+    font-family: "iAWriterQuattro";
+    font-weight: 400 700;
+    font-style: normal;
+    src: local("iA Writer Quattro"), url("ia-writer-font://iAWriterQuattro.ttf");
+}
+
+@font-face {
+    font-family: "iAWriterQuattro";
+    font-weight: 400 700;
+    font-style: italic;
+    src: local("iA Writer Quattro"), url("ia-writer-font://iAWriterQuattro-Italic.ttf");
+}
+
+@font-face {
+    font-family: "iAWriterMono";
+    font-weight: 400 700;
+    font-style: normal;
+    src: local("iA Writer Mono"), url("ia-writer-font://iAWriterMono.ttf");
+}
+
+@font-face {
+    font-family: "iAWriterMono";
+    font-weight: 400 700;
+    font-style: italic;
+    src: local("iA Writer Mono"), url("ia-writer-font://iAWriterMono-Italic.ttf");
+}
+
 :root {
     --line-height: 1.62;
     --vertical-rhythm: 1rem;
@@ -26,7 +57,7 @@
 *,
 *::before,
 *::after {
-    font-family: "iA Writer Quattro", iAWriterQuattroS-Regular, sans-serif;
+    font-family: "iAWriterQuattro", "iA Writer Quattro", sans-serif;
     line-height: var(--line-height);
     box-sizing: border-box;
     margin: 0;
@@ -113,7 +144,7 @@ a {
     }
 
     body::before {
-        top: 73mm;
+        top: 172mm;
     }
 
 
@@ -217,7 +248,7 @@ hr::after {
 
 pre,
 code {
-    font-family: "iA Writer Mono", monospace;
+    font-family: "iAWriterMono", "iA Writer Mono", monospace;
     overflow: hidden;
     white-space: pre-wrap;
     background: #eee;

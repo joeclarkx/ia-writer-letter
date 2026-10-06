@@ -13,6 +13,36 @@ iA Writer stores installed templates in its SQLite database (`~/Library/Containe
 3. Open (or re-open) a document using the Letter template
 4. Open print preview to verify changes
 
+## iA Writer's fonts are not system fonts
+
+iA Writer Quattro / Duo / Mono are **not** installed into `~/Library/Fonts` or
+`/Library/Fonts`. They ship inside the app bundle:
+
+```
+/Applications/iA Writer.app/Contents/Resources/Fonts/Core-Variable/Quattro/iAWriterQuattro.ttf
+```
+
+So `font-family: "iA Writer Quattro"` silently fails and falls back to `sans-serif`.
+
+Templates must declare `@font-face` using the app's private URL scheme, exactly as
+iA's own bundled templates do (see
+`/Applications/iA Writer.app/Contents/Resources/Templates/Serif.iatemplate/Contents/Resources/font/`):
+
+```css
+@font-face {
+    font-family: "iAWriterQuattro";
+    font-weight: 400 700;
+    font-style: normal;
+    src: local("iA Writer Quattro"), url("ia-writer-font://iAWriterQuattro.ttf");
+}
+```
+
+Note the family name has **no spaces** (`iAWriterQuattro`, not `iA Writer Quattro`).
+The `local()` entry only helps if the user happens to have the font installed
+separately; the `ia-writer-font://` URL is what actually loads it. Italic needs its own
+`@font-face` block pointing at `iAWriterQuattro-Italic.ttf` — the fonts are variable in
+weight (400–700) but ship roman and italic as separate files.
+
 ## JavaScript injection does not work in the print renderer
 
 `window.addEventListener('load', ...)` runs in the normal editing view but not in iA Writer's print renderer. DOM elements injected via JS do not appear in print preview or printed output.
