@@ -145,15 +145,6 @@ h5 + h6 {
     margin-top: var(--vertical-rhythm);
 }
 
-body.title h1 {
-    font-size: larger;
-    margin-top: 2.5cm;
-}
-
-body.title h2 {
-    font-weight: normal;
-}
-
 table,
 figure,
 blockquote {
